@@ -7,7 +7,6 @@ export const HeroesApp = () => {
   // Proyectar el contenido de la ruta seleccionada
   return (
     <>
-        <Navbar />
         <AppRouter />
     </>
   )
