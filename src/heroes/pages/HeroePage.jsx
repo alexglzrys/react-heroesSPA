@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMemo } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { getHeroById } from '../helpers/getHeroById';
 
@@ -7,8 +8,10 @@ export const HeroePage = () => {
   
   // Obtener los segmentos enviados en la URL - (Info pasada a la ruta)
   const {id} = useParams();
+
   // Obtener un heroe por su id
-  const heroe = getHeroById(id);
+  // Memorizar el valor retornado por la funciòn en caso de que el componente o su padre se renderice. Solo se debe volver a ejecutar la funciòn si el id cambia
+  const heroe = useMemo(() => getHeroById(id), [id]) 
   
   const handleNavigateToBack = () => {
     // Regresar a la pàgina anterior
