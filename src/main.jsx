@@ -5,10 +5,10 @@ import { HeroesApp } from './HeroesApp'
 import './main.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       {/* Gestionar mi aplicación con un manejador de rutas */}
       <HeroesApp />
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 )
