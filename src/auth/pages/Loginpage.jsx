@@ -12,11 +12,15 @@ export const Loginpage = () => {
 
   // Función para hacer Login
   const handleLogin = () => {
+    // Verificar si existe registro de la última ruta privada visitada por el usuario
+    // Mejora la experiencia de navegación del usuario (no es un requisito que toda app deba implementar)
+    const lastPath = localStorage.getItem("lastPath") || "/";
+
     // Despachar acción para realizar login
     login("Alejandro González");
 
     // Navegar programaticamente a /
-    navigate("/", {
+    navigate(lastPath, {
       replace: true, // No deseamos que el usuario pueda regresar a la ruta anterior (ya se logeo)
     });
   };
