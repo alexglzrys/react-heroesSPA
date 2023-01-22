@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../auth";
 
-export const PrivateRouter = ({ children }) => {
+export const PrivateRoute = ({ children }) => {
   // Suscribirnos al contexto para saber si el usuario esta logeado
   const { logged } = useContext(AuthContext);
 

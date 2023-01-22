@@ -1,14 +1,25 @@
 import { Route, Routes } from "react-router-dom";
 import { Loginpage } from "../auth";
 import { HeroesRoutes } from "../heroes";
-import { PrivateRouter } from "./PrivateRouter";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
 
 export const AppRouter = () => {
   // Router principal de la aplicación. Incluye rutas específicas y routes de módulos
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Loginpage />} />
+        {/* <Route path="/login" element={<Loginpage />} /> */}
+
+        {/* Especificar el listado de rutas públicas (solo usuarios invitados pueden acceder a ellas) */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Loginpage />
+            </PublicRoute>
+          }
+        />
 
         {/* El módulo de Heroes tiene su propio router - Lo que permite que tenga un Layout diferente */}
         {/* <Route path='/*' element={<HeroesRoutes />} /> */}
@@ -18,9 +29,9 @@ export const AppRouter = () => {
         <Route
           path="/*"
           element={
-            <PrivateRouter>
+            <PrivateRoute>
               <HeroesRoutes />
-            </PrivateRouter>
+            </PrivateRoute>
           }
         />
       </Routes>
