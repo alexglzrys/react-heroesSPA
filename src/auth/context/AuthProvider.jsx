@@ -38,12 +38,25 @@ export const AuthProvider = ({ children }) => {
     dispatch(action);
   };
 
+  const logout = () => {
+    // Remover usuario de localStorage
+    localStorage.removeItem("user");
+    // Generar la acción a despachar para actualizar el estado una vez realizado el logout
+    const action = {
+      type: types.logout,
+      payload: {},
+    };
+    // despachar la acción
+    dispatch(action);
+  };
+
   return (
     // No es una buena idea dar todo el poder a los componentes para que despachen cualquier acción. Para ello, es mejor pasar funciones con acciones permitidas
     <AuthContext.Provider
       value={{
         ...authState,
         login,
+        logout,
       }}
     >
       {children}

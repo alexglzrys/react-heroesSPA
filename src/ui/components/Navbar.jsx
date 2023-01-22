@@ -4,13 +4,16 @@ import { AuthContext } from "../../auth";
 
 export const Navbar = () => {
   // Usar información situada dentro de un contexto
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   // Custom Hook de React Router DOM - para trabajar con la navegaciòn programatica
   const navigate = useNavigate();
 
   // Función para hacer logout
   const handleLogout = () => {
+    // Ejecutar función para actualizar el estado de mi aplicación
+    logout();
+
     // Navegar a la ruta de /login, reemplazando el historial de navegaciòn (no podrà regresar a la ruta anterior)
     navigate("/login", {
       replace: true,
@@ -58,9 +61,12 @@ export const Navbar = () => {
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
           <ul className="navbar-nav ml-auto">
             <span className="nav-item nav-link text-primary">{user?.name}</span>
-            <button className="nav-item nav-link btn" onClick={handleLogout}>
-              Logout
-            </button>
+            {/* Mostrar botón solo si el usuario esta logeado */}
+            {user && (
+              <button className="nav-item nav-link btn" onClick={handleLogout}>
+                Logout
+              </button>
+            )}
           </ul>
         </div>
       </div>
