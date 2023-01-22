@@ -7,7 +7,7 @@ export const authReducer = (state, action) => {
             return {
                 ...state,
                 logged: true,
-                name: action.payload
+                user: action.payload
             };
         // Estado para usuarios invitados
         case types.logout:
